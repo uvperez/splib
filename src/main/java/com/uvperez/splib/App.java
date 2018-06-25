@@ -5,10 +5,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  * Hello world!
@@ -24,8 +29,26 @@ public class App
         
         //test();
 
-        testStoredJdbc();
+        //testStoredJdbc();
 
+        testDbUtils();
+
+    }
+
+    static void testDbUtils() {
+        try {
+            DataSource ds = getDataSource();
+            QueryRunner queryRunner = new QueryRunner(ds);
+            String sql = "{CALL employees.list_employees_birthdate(?) }";
+            Object params = "01/02/1965";
+            ResultSetHandler<List<Employee>> rsh = new BeanListHandler<Employee>(Employee.class);
+            List<Employee> query = queryRunner.query(sql, rsh, params);
+            for (Employee var : query) {
+                System.out.println(var.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static void testStoredJdbc() {
@@ -115,7 +138,7 @@ public class App
         String host = "localhost";
         int port = 3306;
         String user = "employee";
-        String pass = "thepass";
+        String pass = "qwerty";
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser(user);
         dataSource.setPassword(pass);
