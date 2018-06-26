@@ -1,5 +1,5 @@
 # splib
-Java library for using Store procedures in a easy way
+Java library for using Store procedures in an easy way
 
 ## Requeriments
 You should have dbutils 1.6 in your dependencies:
