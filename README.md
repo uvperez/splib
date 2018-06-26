@@ -1,6 +1,16 @@
 # splib
 Java library for using Store procedures in a easy way
 
+## Requeriments
+You should have dbutils 1.6 in your dependencies:
+```
+    <dependency>
+      <groupId>commons-dbutils</groupId>
+      <artifactId>commons-dbutils</artifactId>
+      <version>1.6</version>
+    </dependency>
+```
+
 ## Getting started
 You can call a Oracle Stored procedure as
 ```
