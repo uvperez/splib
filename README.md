@@ -10,6 +10,7 @@ You should have dbutils 1.6 in your dependencies:
       <version>1.6</version>
     </dependency>
 ```
+Also you have to config **ojdbc6.jar** in your dependencies
 
 ## Getting started
 You can call a Oracle Stored procedure as
